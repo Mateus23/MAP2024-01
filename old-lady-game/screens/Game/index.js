@@ -14,11 +14,6 @@ const GameScreen = ({ navigation }) => {
   const [invalidMoveDialog, setInvalidMoveDialog] = useState(false);
   const [endGameDialog, setEndGameDialog] = useState(false)
   const [activePlayer, setActivePlayer] = useState(1);
-  const [dialogState, setDialogState] = useState({
-    text: '',
-    isOpen: false,
-    onClick: () => {}
-  });
   const [table, setTable] = useState(initialTableState); // Dica: Só teremos renderização ao substituir o array usanto setTable
 
   const endGameText = ''; // usar ternário para decidir o texto
