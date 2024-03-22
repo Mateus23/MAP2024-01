@@ -9,11 +9,6 @@ const HomeScreen = ({ navigation }) => {
           title="Pokedex"
           onPress={() => navigation.navigate('Pokedex')}
         />
-        <Button
-          title="Search"
-          onPress={() => navigation.navigate('Search')}
-        />
-        <PokemonButton id={1} />
       </View>
     );
   }
