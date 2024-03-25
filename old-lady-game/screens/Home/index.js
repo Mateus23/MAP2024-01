@@ -9,7 +9,7 @@ const HomeScreen = ({ navigation }) => {
         </Text>
         <Button
           title="Play"
-          onPress={() => {}} // Esse botão precisa ir para a página do jogo
+          onPress={() => navigation.navigate('Game')} // Esse botão precisa ir para a página do jogo
         />
       </View>
     );

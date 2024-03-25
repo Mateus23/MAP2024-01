@@ -44,7 +44,9 @@ const GameScreen = ({ navigation }) => {
         playerName={PLAYERS_NAME[activePlayer - 1]}
       />
       <GameTable
-        // 
+        //
+        onCellClicked={(id) => console.log('CLICKED', id)}
+        tableState={table}
       />
       <EndGameDialog
         isOpen={endGameDialog}

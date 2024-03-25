@@ -12,11 +12,13 @@ const Table = ({ onCellClicked, tableState }) => {
             {
                 tableState.map((cellState, id) => {
                     return(
-                        <Cell
-                            onClick={onCellClicked}
-                            id={id}
-                            cellState={cellState}
-                        />)
+                        <View style={styles.cellContainer}>
+                            <Cell
+                                onClick={onCellClicked}
+                                id={id}
+                                cellState={cellState}
+                            />
+                        </View>)
                 })
             }
         </View>
@@ -25,9 +27,18 @@ const Table = ({ onCellClicked, tableState }) => {
 
 const styles = StyleSheet.create({
     table: {
-        flex: 1,
-        alignItems: 'center',
+        width: "70%",
+        aspectRatio: 1,
+        alignItems: 'flex-start',
         justifyContent: 'flex-start',
+        alignContent: 'flex-start',
+        flexWrap: 'wrap'
+    },
+    cellContainer: {
+        width: '33.3%',
+        aspectRatio: 1,
+        borderWidth: 1,
+        borderColor: '#111'
     }
 })
 
