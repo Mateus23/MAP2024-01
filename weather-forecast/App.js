@@ -1,31 +1,32 @@
 import { StyleSheet, Text, View } from 'react-native';
 import WeatherChart from './WeatherChart';
-import { mockData } from './mockData';
 import { useEffect, useState } from 'react';
 import { getForecast } from './api-weather';
 import Loading from './components/Loading';
+import { DEFAULT_CITY_NAME, DEFAULT_LOCATION } from './constants';
 
 export default function App() {
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState();
+  const [city, setCity] = useState(DEFAULT_CITY_NAME);
+  const [location, setLocation] = useState(DEFAULT_LOCATION)
 
   useEffect(() => {
-    getForecast().then(
+    getForecast(location).then(
       (res) => {
         setData(res.data)
       }
     )
   }, [])
 
-  if (data === undefined){
-    return <Loading />
-  }
-
-  const hours = data.hourly.time;
-  const temperatures = data.hourly.temperature_2m;
-  const rainProbabilities = data.hourly.precipitation_probability;
+  const hours = data ? data.hourly.time : [];
+  const temperatures = data ? data.hourly.temperature_2m : [];
+  const rainProbabilities = data ? data.hourly.precipitation_probability : [];
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>
+        {city}
+      </Text>
       <WeatherChart
         hours={hours}
         values={temperatures}
@@ -35,6 +36,7 @@ export default function App() {
           to: '#d61',
           line: '#555'
         }}
+        title={"Temperatura oC"}
       />
       <WeatherChart
         hours={hours}
@@ -45,6 +47,7 @@ export default function App() {
           to: '#14a',
           line: '#555'
         }}
+        title={"Probabilidade de Precipitação"}
       />
     </View>
   );
@@ -55,6 +58,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold'
+  }
 });

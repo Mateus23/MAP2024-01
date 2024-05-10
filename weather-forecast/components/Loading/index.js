@@ -1,11 +1,19 @@
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 
-const Loading = () => {
+const Loading = ({height, width}) => {
     return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+        <View style={{ ...styles.container, height, width}}>
             <ActivityIndicator size="large"/>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})
 
 export default Loading;
